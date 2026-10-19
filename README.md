@@ -79,3 +79,60 @@ Reset Gate: how much of past memory to forget
 ## Bi-directional RNN
 for a forward RNN: the prediction is only influenced by previous words (inputs, hidden layers, predictions, loss, backpropagation to adjust the weights for words and that input sentence)
 for bi-directional: there is another layer to go another way
+
+
+## FastAPI VS Flask VS TF serving 
+TF serving is better than the fastapi and flask in terms of utilization of hardware resource 
+It also makes version management for a model easy
+- the model config file is? 
+- v1 is in the tf serving api? 
+
+
+## Transformers
+- Goal of the llm is predict the next work
+
+### Word embeddings 
+asking a bunch of questions to represent the words in a vector 
+e.g. king - man + woman = queen. These are static embeddings. 
+1. word2vec
+2. 
+#### Disadvantages 
+- the context is not considered 
+
+
+### Contextual embeddings 
+takes a static embedding and add the vectors for context?
+
+### Encoder Decoder
+- infernece is the testiing phase 
+- training phase: static word embedding matrix for the whole sentence 
+- positional embedding: adds a vector for the position (order) 
+- Attention is all you need: percentages of how the neighboring words attends to the keyword 
+- query, value, key: 
+    .e.g I want to know the modifiers
+    - Wq knows how to encode the query of a token 
+    - static embedding of a word (the sentence is the key)
+    - result = static embedding of a word  * Wq
+- self supervised learning? 
+- softmax: converts results into probabilities 
+- take positional embeddings for a word and multiple with another matrix to get the value vector 
+
+### Multi-head attention
+- one attention head can work on adjective 
+- another attention head can work on verbs, etc
+The goal is to allow the model to focus on difference aspects on tyoes of tokens 
+
+### Norm
+normalize values between 0 and 1
+
+### Nx Layers
+repeat the encoding?
+
+#### Examples
+- BERT only has the encoder structure 
+- GPT only has decoder 
+
+#### Decoder 
+- multiheaded cross-attention: query vector will be different with a <start>
+- V and K is from encoder and Q is from decorder 
+
